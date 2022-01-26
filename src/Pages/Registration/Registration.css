@@ -1,0 +1,19 @@
+.loginform input[type="text"]{
+    width:450px;
+    margin-bottom: 0px;
+    margin-top: 20px;
+}
+
+.loginform{
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    padding: 100px 0px;
+}
+.registrationimage{
+    background:url("https://i.postimg.cc/YCrCD6ms/loginimage.jpg");
+    
+    background-size: 100% 100%;
+    margin-top: 15px;
+    padding-bottom: 100px;
+    
+
+}

@@ -1,0 +1,23 @@
+.loginform{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(231, 234, 238, 0.664);
+    border-radius: 10px;
+  
+}
+
+.loginform input[type="email"],input[type="password"]{
+    width:450px;
+    margin-bottom: 0px;
+    margin-top: 20px;
+}
+
+.loginbackground{
+    background:url("https://i.postimg.cc/VLBNFG5t/registrationimage.jpg");
+    
+    background-size: 100% 100%;
+    margin-top: 15px;
+    padding-bottom: 100px; 
+}
