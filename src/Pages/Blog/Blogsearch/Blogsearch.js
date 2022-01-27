@@ -1,12 +1,11 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Typography } from '@mui/material';
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@mui/styles';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import DescriptionIcon from '@mui/icons-material/Description';
 import StarIcon from '@mui/icons-material/Star';
-import './Blog.css'
+
 import axios from 'axios';
-import Pagination from '../Pagination/Pagination'
 import { Link } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
 
@@ -35,39 +34,29 @@ const useStyles = makeStyles((theme) => ({
     }
 
 }))
-function Blog(props) {
+function Blogsearch(props) {
     const classes = useStyles();
 
     const [allBlogs, setAllblogs] = useState([]);
-    const [currentpage, setCurrentpage] = useState(1);
-    const [postperpage, setPostperpage] = useState(5);
-
+    console.log(props.rating)
     useEffect(() => {
-        axios.get("http://localhost:5000/blogs").then((res)=>setAllblogs(res.data)).catch(err=>console.log(err))
-    }, [])
-    
-    let indexoflastpost = currentpage * postperpage;
-    let indexoffirstpost = indexoflastpost - postperpage;
-    let currentblogs = allBlogs.slice(indexoffirstpost, indexoflastpost)
-
-    let paginate = (pagenumber) => {
-        setCurrentpage(pagenumber)
-    }
+        axios.get(`http://localhost:5000/blogs/${props.rating}`).then((res) => setAllblogs(res.data)).catch(err => console.log(err))
+    }, [props.rating])
     return (
-        <Grid item md={props.column} style={{margin:"0px 10px"}}>
-            <div style={{margin:"20px 5px",textAlign:"center"}}>
+        <Grid item md={12} style={{ margin: "0px 10px" }}>
+            <div style={{ margin: "20px 5px", textAlign: "center" }}>
                 <Typography variant='h4' textAlign="center">Dream Your Next Trip</Typography>
-                <Typography variant='h6' textAlign="center" style={{ letterSpacing: "3px", color: "gray",marginBottom:"10px"}}>Weekend getaways from Dhaka City.Where to next?</Typography>
+                <Typography variant='h6' textAlign="center" style={{ letterSpacing: "3px", color: "gray", marginBottom: "10px" }}>Weekend getaways from Dhaka City.Where to next?</Typography>
                 <Typography>==========================</Typography>
             </div>
-            
+
             <Grid container spacing={2}>
-                 
+
                 {
-                    currentblogs
+                    allBlogs
                         .map((blog) => {
                             return (
-                                <Grid item lg={4}md={6} sm={6} xs={12}>
+                                <Grid item lg={4} md={6} sm={6} xs={12}>
                                     <Card className="myblogcard">
                                         <CardMedia
                                             component="img"
@@ -81,10 +70,10 @@ function Blog(props) {
                                             </Typography>
                                             <Typography className={classes.borderstyle}></Typography>
                                             <Typography variant="body2" color="textSecondary" component="p" className={classes.calendartime}>
-                                                <CalendarTodayIcon className={classes.calendaricon} /> <Typography>{ blog.date}</Typography>
+                                                <CalendarTodayIcon className={classes.calendaricon} /> <Typography>{blog.date}</Typography>
                                             </Typography>
                                             <Typography variant="body2" color="textSecondary" component="p" className={classes.calendartime}>
-                                                <Typography>{blog.description.slice(0,70)}.</Typography>
+                                                <Typography>{blog.description.slice(0, 70)}.</Typography>
                                             </Typography>
                                         </CardContent>
                                         <CardActions className={classes.cardbottom}>
@@ -97,21 +86,20 @@ function Blog(props) {
                                                 }
                                             </Button>
                                             <Button size="small" color="primary">
-                                                <Link to={`/singlepage/${blog._id}`}>Details</Link> 
+                                                <Link to={`/singlepage/${blog._id}`}>Details</Link>
                                             </Button>
                                         </CardActions>
                                     </Card>
                                 </Grid>
                             )
                         })}
-               
-                
-               
-                
+
+
+
+
             </Grid>
-            <Pagination totalpost={allBlogs.length} Postperpage={postperpage} paginate={paginate} /> 
         </Grid>
-         );
+    );
 }
 
-export default Blog;
+export default Blogsearch;

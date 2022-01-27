@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import { Grid } from '@mui/material';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -15,12 +15,19 @@ import Divider from '@mui/material/Divider';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 function Sidebar() {
     let i=0
     const [selectedIndex, setSelectedIndex] = React.useState(1);
+    const [allBlogs, setAllblogs] = useState([]);
+    
 
+    useEffect(() => {
+        axios.get("http://localhost:5000/blogs").then((res) => setAllblogs(res.data)).catch(err => console.log(err))
+    }, [])
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);
     };
@@ -29,13 +36,13 @@ function Sidebar() {
             
             <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
                 {
-                    [...Array(10).keys()]
-                        .map(() => {
+                    allBlogs
+                        .map((blog) => {
                             return (
                                 <>
                                 <ListItem alignItems="flex-start">
                                     <ListItemAvatar>
-                                        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                                            <Link to={`/singlepage/${blog._id}`}><img src={blog.image} height="60px" width="100px" style={{ border: "1px solid red", borderRadius: "5px", marginRight: "5px" }} /></Link>
                                     </ListItemAvatar>
                                     <ListItemText
                                         primary="Brunch this weekend?"

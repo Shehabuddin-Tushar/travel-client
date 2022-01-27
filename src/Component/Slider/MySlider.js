@@ -45,7 +45,7 @@ function MySlider() {
       
     };
     return (
-        <Slider {...settings}>
+        <Slider {...settings} style={{marginTop:"55px"}}>
         <div>
             <img src={image1} alt="sliderimage1" style={{ width: "100%", height: "60vh" }} />
         </div>

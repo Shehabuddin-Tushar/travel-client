@@ -38,7 +38,7 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static" style={{ backgroundColor:"#2a72d8"}}>
+    <AppBar position="fixed" style={{ backgroundColor:"#2a72d8"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -88,6 +88,11 @@ const ResponsiveAppBar = () => {
                 <NavLink exact to="/" activeStyle={{ textDecoration: "none", color: "#000", fontWeight: "bold", padding: "5px 0px" }}>Home</NavLink>
                   
               </MenuItem>
+
+              <MenuItem onClick={handleCloseNavMenu}>
+                <NavLink to="/blog" activeStyle={{ textDecoration: "none", color: "#000", fontWeight: "bold", padding: "5px 0px" }}>Blog</NavLink>
+
+              </MenuItem>
               {
                 !user.email &&
                <>
@@ -128,6 +133,14 @@ const ResponsiveAppBar = () => {
               >
               <NavLink exact to="/" activeStyle={{ textDecoration: "none", color: "#000", fontWeight: "bold", padding: "5px 0px" }}>Home</NavLink>
             </Button>
+
+            <Button
+
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              <NavLink  to="/blog" activeStyle={{ textDecoration: "none", color: "#000", fontWeight: "bold", padding: "5px 0px" }}>Blog</NavLink>
+            </Button>
             {
               user.email &&
               <Button
@@ -159,7 +172,7 @@ const ResponsiveAppBar = () => {
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 onClick={Logout}
               >
-                <NavLink to="" activeStyle={{ textDecoration: "none", color: "#000", fontWeight: "bold", padding: "5px 0px" }}>Logout</NavLink>
+                <NavLink to="" activeStyle={{ textDecoration: "none", color: "white", fontWeight: "bold", padding: "5px 0px" }}>Logout</NavLink>
               </Button>
             }
           </Box>

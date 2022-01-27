@@ -3,19 +3,21 @@ import React from 'react';
 import Blog from '../../Component/Blog/Blog';
 import Sidebar from '../../Component/Sidebar/Sidebar';
 import MySlider from '../../Component/Slider/MySlider';
+import Footer from '../../Shared/Footer/Footer';
 import Navbar from '../../Shared/Header/Navbar';
 
 function Home() {
     return (
         <div>
-             <Navbar></Navbar> 
+            <Navbar></Navbar> 
             <MySlider></MySlider>
           
              <Grid container spacing={2}>
                 <Sidebar></Sidebar>
-                <Blog></Blog>
+                <Blog column={8.5}></Blog>
                 
-                </Grid>
+            </Grid>
+            <Footer></Footer>
             
         </div>
     );

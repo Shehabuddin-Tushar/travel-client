@@ -5,6 +5,9 @@ import Login from './Pages/Login/Login';
 import Registration from './Pages/Registration/Registration';
 import Authprovider from './hooks/Context';
 import useFirebase from './hooks/Firebasehook';
+import Addexperience from './Pages/Addexperience/Addexperience';
+import Blogpage from './Pages/Blog/Blogpage';
+import PrivateRoute from './PrivateRoute/Privateroute';
 
 function App() {
   const { user } = useFirebase();
@@ -15,10 +18,16 @@ function App() {
         <Switch>
            <Route exact path="/">
                <Home></Home>
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
+            </Route>
+            <Route  path="/blog">
+              <Blogpage></Blogpage>
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <PrivateRoute path="/addexperience">
+              <Addexperience></Addexperience>
+            </PrivateRoute>
 
           <Route path="/registration">
             <Registration />
