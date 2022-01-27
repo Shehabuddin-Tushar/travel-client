@@ -43,7 +43,7 @@ function Blog(props) {
     const [postperpage, setPostperpage] = useState(5);
 
     useEffect(() => {
-        axios.get("http://localhost:5000/blogs").then((res)=>setAllblogs(res.data)).catch(err=>console.log(err))
+        axios.get("https://morning-coast-07202.herokuapp.com/blogs").then((res)=>setAllblogs(res.data)).catch(err=>console.log(err))
     }, [])
     
     let indexoflastpost = currentpage * postperpage;

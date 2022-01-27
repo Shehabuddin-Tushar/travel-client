@@ -40,7 +40,7 @@ function Blogsearch(props) {
     const [allBlogs, setAllblogs] = useState([]);
     console.log(props.rating)
     useEffect(() => {
-        axios.get(`http://localhost:5000/blogs/${props.rating}`).then((res) => setAllblogs(res.data)).catch(err => console.log(err))
+        axios.get(`https://morning-coast-07202.herokuapp.com/blogs/${props.rating}`).then((res) => setAllblogs(res.data)).catch(err => console.log(err))
     }, [props.rating])
     return (
         <Grid item md={12} style={{ margin: "0px 10px" }}>

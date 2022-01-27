@@ -12,7 +12,7 @@ function Singlepage() {
     const {id }= useParams();
     console.log(id)
     useEffect(() => {
-        axios.get(`http://localhost:5000/singleblog/${id}`).then((res) =>setBlog(res.data)).catch(err => console.log(err))
+        axios.get(`https://morning-coast-07202.herokuapp.com/singleblog/${id}`).then((res) =>setBlog(res.data)).catch(err => console.log(err))
     }, [id])
     return (
         <div>

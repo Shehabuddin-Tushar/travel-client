@@ -43,7 +43,7 @@ function Addexform() {
                 
             };
 
-        axios.post(`http://localhost:5000/addexperience`, blogData)
+        axios.post(`https://morning-coast-07202.herokuapp.com/addexperience`, blogData)
                 .then(res => {
                     console.log(res)
                     if (res.data.insertedId) {
