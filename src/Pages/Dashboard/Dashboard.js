@@ -32,6 +32,10 @@ import {
     useHistory,
     NavLink
 } from "react-router-dom";
+import Manageblogs from './Manageblogs/Mangeblogs';
+import Addblog from './Addblog/Addblog';
+import Makeadmin from './Makeadmin/Makeadmin';
+
 const drawerWidth = 240;
 
 
@@ -45,7 +49,7 @@ function Dashboard(props) {
        const [databaseuser,setDatabaseuser]=useState({});
        const useremail=user.email;
         useEffect(()=>{
-            fetch(`http://localhost:5000/userfind/${user.email}`).then(res=>res.json()).then(data=>{
+            fetch(`https://morning-coast-07202.herokuapp.com/userfind/${user.email}`).then(res=>res.json()).then(data=>{
                 setDatabaseuser(data);
                 console.log(data)
             setMyrole(data.role==="admin"?true:false)
@@ -195,30 +199,22 @@ function Dashboard(props) {
                 
                 <Switch>
                     <Route exact path={path}>
-                       <h1>tushar</h1>
+                       <h1>Admin home</h1>
                     </Route>
                     <Route path={`${path}/manageblogs`}>
-                        <h1>manageblogs</h1>
+                        <Manageblogs></Manageblogs>
                     </Route>
                     <Route path={`${path}/addblogs`}>
-                         <h1>add blogs</h1>
+                         <Addblog></Addblog>
                     </Route>
                     <Route path={`${path}/makeadmin`}>
-                       <h1>make admin</h1> 
+                       <Makeadmin></Makeadmin>
                     </Route>
                    
-                    <Route path={`${path}/payment/:id`}>
+                    <Route path={`${path}/blog/:id`}>
                        
                     </Route>
-
-                    
-
-                    <Route path={`${path}/viewblog`}>
-                        
-                    </Route>
-
-                    
-
+ 
                 </Switch>
             </Box>
         </Box>

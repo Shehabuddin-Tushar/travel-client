@@ -40,7 +40,7 @@ function Blog(props) {
 
     const [allBlogs, setAllblogs] = useState([]);
     const [currentpage, setCurrentpage] = useState(1);
-    const [postperpage, setPostperpage] = useState(5);
+    const [postperpage, setPostperpage] = useState(10);
 
     useEffect(() => {
         axios.get("https://morning-coast-07202.herokuapp.com/blogs").then((res)=>setAllblogs(res.data)).catch(err=>console.log(err))
