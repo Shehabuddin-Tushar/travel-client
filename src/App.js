@@ -9,6 +9,7 @@ import Addexperience from './Pages/Addexperience/Addexperience';
 import Blogpage from './Pages/Blog/Blogpage';
 import PrivateRoute from './PrivateRoute/Privateroute';
 import Singlepage from './Pages/Singlepage/Singlepage';
+import Dashboard from './Pages/Dashboard/Dashboard';
 
 function App() {
   const { user } = useFirebase();
@@ -38,6 +39,10 @@ function App() {
           <Route path="/registration">
             <Registration />
           </Route>
+
+            <Route path="/dashboard">
+              <Dashboard></Dashboard>
+            </Route>
          </Switch>
         </BrowserRouter>
       </Authprovider>

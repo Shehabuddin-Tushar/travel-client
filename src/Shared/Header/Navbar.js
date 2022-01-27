@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React,{useState,useEffect} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -21,6 +21,8 @@ const ResponsiveAppBar = () => {
   const { user, Logout } = useAuth()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [myrole, setMyrole] = useState();
+  const [databaseuser, setDatabaseuser] = useState({});
    console.log(user.photoURL)
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -36,6 +38,16 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const useremail = user.email;
+  useEffect(() => {
+    fetch(`http://localhost:5000/userfind/${user.email}`).then(res => res.json()).then(data => {
+      setDatabaseuser(data);
+      
+      setMyrole(data.role === "admin" ? true : false)
+
+    })
+  }, [useremail, myrole])
 
   return (
     <AppBar position="fixed" style={{ backgroundColor:"#2a72d8"}}>
@@ -114,6 +126,17 @@ const ResponsiveAppBar = () => {
                   </MenuItem>
                 </>
               }
+
+              {
+                user.email && myrole &&
+                <>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <NavLink to="/dashboard" activeStyle={{ textDecoration: "none", color: "#000", fontWeight: "bold", padding: "5px 0px" }}>dashboard</NavLink>
+
+                  </MenuItem>
+                  
+                </>
+              }
             </Menu>
           </Box>
           <Typography
@@ -163,7 +186,18 @@ const ResponsiveAppBar = () => {
             
             </>
             }
+            {user.email && myrole &&
+              <>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  <NavLink to="/dashboard" activeStyle={{ textDecoration: "none", color: "#000", fontWeight: "bold", padding: "5px 0px" }}>dashboard</NavLink>
+                </Button>
 
+
+              </>
+            }
             
             {user.email &&
               <Button
