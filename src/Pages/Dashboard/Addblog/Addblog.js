@@ -98,10 +98,6 @@ function Addblog() {
 
                         </Select>
 
-
-
-
-
                         <TextField type="text" {...register("date", { required: true })} label="example (10oct - 15oct 22)" style={{ width: "80%", height: "70px" }} id="standard-basic" variant="standard" />
                         <Typography sx={{ color: "red" }}>{errors.date && <span>date is required</span>}</Typography>
                         <InputLabel id="demo-simple-select-label" sx={{ marginTop: "20px" }}>Rating the experience</InputLabel>
