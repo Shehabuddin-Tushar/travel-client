@@ -11,7 +11,7 @@ import DraftsIcon from '@mui/icons-material/Drafts';
 
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
-
+import StarIcon from '@mui/icons-material/Star';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
@@ -45,7 +45,7 @@ function Sidebar() {
                                             <Link to={`/singlepage/${blog._id}`}><img src={blog.image} height="60px" width="100px" style={{ border: "1px solid red", borderRadius: "5px", marginRight: "5px" }} /></Link>
                                     </ListItemAvatar>
                                     <ListItemText
-                                        primary="Brunch this weekend?"
+                                        primary={blog.title}
                                         secondary={
                                             <React.Fragment>
                                                 <Typography
@@ -54,9 +54,14 @@ function Sidebar() {
                                                     variant="body2"
                                                     color="text.primary"
                                                 >
-                                                    Ali Connors
+                                                    {
+                                                        [...Array(parseInt(blog.ratings)).keys()]
+                                                            .map(() => {
+                                                                return <StarIcon sx={{ color: "goldenrod" }} />
+                                                            })
+                                                    }
                                                 </Typography>
-                                                {" — I'll be in your neighborhood doing errands this…"}
+                                                
                                             </React.Fragment>
                                         }
                                     />

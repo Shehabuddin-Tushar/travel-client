@@ -35,6 +35,7 @@ import {
 import Manageblogs from './Manageblogs/Mangeblogs';
 import Addblog from './Addblog/Addblog';
 import Makeadmin from './Makeadmin/Makeadmin';
+import Editblog from './Editblog/Editblog';
 
 const drawerWidth = 240;
 
@@ -199,7 +200,7 @@ function Dashboard(props) {
                 
                 <Switch>
                     <Route exact path={path}>
-                       <h1>Admin home</h1>
+                        <img src="https://i.postimg.cc/bJm4BzNq/travelhome2.jpg" width="100%" height="600px"/>
                     </Route>
                     <Route path={`${path}/manageblogs`}>
                         <Manageblogs></Manageblogs>
@@ -212,7 +213,7 @@ function Dashboard(props) {
                     </Route>
                    
                     <Route path={`${path}/blog/:id`}>
-                       
+                       <Editblog></Editblog>
                     </Route>
  
                 </Switch>

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './Pagination.css'
 function Pagination({ totalpost, Postperpage, paginate }) {
 
 
@@ -9,12 +9,12 @@ function Pagination({ totalpost, Postperpage, paginate }) {
         pagenumbers.push(i)
     }
     return (
-        <ul>
+        <ul style={{textAlign:"center",marginTop:"50px"}}>
             {
                 pagenumbers.map((number) => {
                     return (
                         <li style={{ display: "inline" }}>
-                            <a onClick={() => paginate(number)} style={{ border: "1px solid blue", padding: "5px 10px", cursor: "pointer",marginRight:"5px" }}>{number}</a>
+                            <a className='pagination' onClick={() => paginate(number)} >{number}</a>
                         </li>
                     )
                 })

@@ -12,8 +12,14 @@ import React, { useState, useEffect } from 'react'
 import useAuth from '../../../hooks/useAuth';
 import axios from 'axios';
 import { useForm } from "react-hook-form";
+import IconButton from '@mui/material/IconButton';
+
+import DeleteIcon from '@mui/icons-material/Delete';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import EditIcon from '@mui/icons-material/Edit';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -42,7 +48,13 @@ function Manageblogs() {
     const { user } = useAuth();
     const [reviewnumber, setReviewnumber] = React.useState();
     const [hotelcategory, setHotelcategory] = React.useState();
-    const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
+    const { register, handleSubmit, watch, formState: { errors }, reset } = useForm({
+        defaultValues: {
+            title: editBlog.title,
+            
+        },
+        shouldUnregister: true
+    });
 
 
     useEffect(() => {
@@ -147,9 +159,19 @@ function Manageblogs() {
                                                     
                                                 </StyledTableCell>
                                                 <StyledTableCell align="center">
-                                                    <Button onClick={() => viewblog(blog._id)} variant="contained">view</Button>&nbsp;
-                                                    <Button onClick={() => deleteblog(blog._id)} variant="contained">delete</Button>&nbsp;
-                                                    <Button onClick={() => editblog(blog._id)} variant="contained">edit</Button>
+                                                    
+                                                    <IconButton onClick={() => viewblog(blog._id)} aria-label="view" style={{ color: "blue" }}>
+                                                        <VisibilityIcon />
+                                                    </IconButton>
+                                                    &nbsp;
+                                                    <IconButton onClick={() => deleteblog(blog._id)} aria-label="delete" style={{color:"red"}}>
+                                                         <DeleteIcon />
+                                                    </IconButton>
+                                                    &nbsp;
+                                                    <IconButton  aria-label="edit" style={{ color: "green" }}>
+                                                        <Link to={`/dashboard/blog/${blog._id}`}><EditIcon /></Link>
+                                                    </IconButton>
+                                                    
                                                     
                                                 </StyledTableCell>
 
@@ -199,90 +221,11 @@ function Manageblogs() {
             }
 
 
-            {
-                editBlog &&
-                <Modal
-                    open={editopen}
-                    onClose={handleeditClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                >
-                        <Box sx={style}>
-                            
-                            <form onSubmit={handleSubmit(onSubmit)}>
-
-                                <ToastContainer />
-
-
-                                <TextField id="standard-basic" defaultValue={editBlog.title}{...register("title", { required: true })} style={{ width: "80%", height: "100px" }} label="Blog title" variant="standard" />
-                                <Typography sx={{ color: "red" }}>{errors.title && <span>title is required</span>}</Typography>
-
-                                <TextField id="standard-basic" defaultValue={ editBlog.expense}{...register("expense", { required: true })} style={{ width: "80%", height: "100px" }} label="expense" variant="standard" />
-                                <Typography sx={{ color: "red" }}>{errors.expense && <span>expense is required</span>}</Typography>
-
-                                <TextField id="standard-basic"{...register("travelerinfo", { required: true })} style={{ width: "80%", height: "100px" }} label="Traveler information" variant="standard" />
-                                <Typography sx={{ color: "red" }}>{errors.travelerinfo && <span>traveler information is required</span>}</Typography>
-
-                                <TextField id="standard-basic" {...register("location", { required: true })} style={{ width: "80%", height: "100px" }} label="travel location" variant="standard" />
-                                <Typography sx={{ color: "red" }}>{errors.location && <span>travel location is required</span>}</Typography>
-
-                                <InputLabel id="demo-simple-select-label2" sx={{ marginTop: "20px" }}>hotel category</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-label2"
-                                    id="demo-simple-select"
-                                    {...register("category", { required: true })}
-                                    value={hotelcategory}
-                                    label="Hotel category"
-                                    // onChange={handleChange}
-                                    sx={{ width: "300px" }}
-
-                                >
-                                    <MenuItem value="three star hotel">Three star hotel</MenuItem>
-                                    <MenuItem value="four star hotel">Four star hotel</MenuItem>
-                                    <MenuItem value="five star hotel">Five star hotel</MenuItem>
-
-                                </Select>
-
-                                <TextField type="text" {...register("date", { required: true })} label="example (10oct - 15oct 22)" style={{ width: "80%", height: "70px" }} id="standard-basic" variant="standard" />
-                                <Typography sx={{ color: "red" }}>{errors.date && <span>date is required</span>}</Typography>
-                                <InputLabel id="demo-simple-select-label" sx={{ marginTop: "20px" }}>Rating the experience</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    {...register("rating", { required: true })}
-                                    value={reviewnumber}
-                                    label="Rating the product"
-                                    // onChange={handleChange}
-                                    sx={{ width: "300px" }}
-
-                                >
-                                    <MenuItem value={0}>zero star</MenuItem>
-                                    <MenuItem value={1}>one star</MenuItem>
-                                    <MenuItem value={2}>Two star</MenuItem>
-                                    <MenuItem value={3}>Three star</MenuItem>
-                                    <MenuItem value={4}>Four star</MenuItem>
-                                    <MenuItem value={5}>Five star</MenuItem>
-                                </Select>
-                                <Typography sx={{ color: "red" }}>{errors.rating && <span>rating is required</span>}</Typography>
-                                <br></br><br></br>
-                                <input id="contained-button-file" type="file" {...register("image", { required: true })} />
-                                <Typography sx={{ color: "red" }}>{errors.image && <span>image is required</span>}</Typography>
-                                <TextareaAutosize
-                                    maxRows={4}
-                                    aria-label="maximum height"
-                                    placeholder="Maximum 4 rows"
-                                    {...register("description", { required: true })}
-                                    style={{ width: "100%", height: "200px", marginTop: "20px" }}
-                                />
-                                <Typography sx={{ color: "red" }}>{errors.description && <span>description is required</span>}</Typography>
-
-                                <Button type="submit" variant="contained" style={{ marginTop: "30px", width: "100%", marginBottom: "20px" }}>Add Experience</Button>
-
-                            </form>
-                            
-                    </Box>
-                </Modal>
-            }
+             
+                                   
+                               
+                                
+                 
             
         </Box>
     )

@@ -40,9 +40,9 @@ function App() {
             <Registration />
           </Route>
 
-            <Route path="/dashboard">
+            <PrivateRoute path="/dashboard">
               <Dashboard></Dashboard>
-            </Route>
+            </PrivateRoute>
          </Switch>
         </BrowserRouter>
       </Authprovider>
