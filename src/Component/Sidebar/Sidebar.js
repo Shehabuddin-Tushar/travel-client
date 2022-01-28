@@ -54,12 +54,7 @@ function Sidebar() {
                                                     variant="body2"
                                                     color="text.primary"
                                                 >
-                                                    {
-                                                        [...Array(parseInt(blog.ratings)).keys()]
-                                                            .map(() => {
-                                                                return <StarIcon sx={{ color: "goldenrod" }} />
-                                                            })
-                                                    }
+                                                   {blog.date}
                                                 </Typography>
                                                 
                                             </React.Fragment>
