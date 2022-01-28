@@ -54,7 +54,7 @@ function Editblog() {
             date: data.date,
             description: data.description,
             ratings: data.rating,
-            status: "pending"
+            status: "approved"
 
         };
        
