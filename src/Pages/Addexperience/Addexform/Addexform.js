@@ -10,7 +10,7 @@ function Addexform() {
     const [hotelcategory, setHotelcategory] = React.useState();
     const { register, handleSubmit, watch, formState: { errors } ,reset} = useForm();
     const onSubmit = async (data) => {
-        ///////////////////////////////
+        
        
             console.log(typeof(data.rating))
             let imageURL
@@ -57,7 +57,7 @@ function Addexform() {
                 .catch(err => console.log(err))
             reset();
         
- /////////////////////
+ 
     };
     return (
         

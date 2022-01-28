@@ -23,7 +23,7 @@ const ResponsiveAppBar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [myrole, setMyrole] = useState();
   const [databaseuser, setDatabaseuser] = useState({});
-   console.log(user.photoURL)
+   
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };

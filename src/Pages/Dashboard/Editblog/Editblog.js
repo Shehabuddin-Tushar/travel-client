@@ -25,7 +25,7 @@ function Editblog() {
     
    
     const onSubmit = async (data) => {
-        ///////////////////////////////
+     
 
         console.log(typeof (data.rating))
         let imageURL
@@ -61,13 +61,17 @@ function Editblog() {
 
         axios.put(`https://morning-coast-07202.herokuapp.com/updateblog/${id}`, blogData)
             .then(res => {
-               
+                if (res.data === false) {
+                    toast.error("Please again write all the field minimum one letter if you edit this blog")
+                } else {
                     toast.success(res.data)
+                }
+                    
               })
             .catch(err => console.log(err))
         reset();
 
-        /////////////////////
+        
     };
     
     return (

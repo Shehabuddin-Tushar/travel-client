@@ -4,10 +4,10 @@ import { makeStyles } from '@mui/styles';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import DescriptionIcon from '@mui/icons-material/Description';
 import StarIcon from '@mui/icons-material/Star';
-import './Blog.css'
 import axios from 'axios';
 import Pagination from '../Pagination/Pagination'
 import { Link } from 'react-router-dom';
+import './Blog.css'
 const useStyles = makeStyles((theme) => ({
 
     cardbottom: {
@@ -67,7 +67,7 @@ function Blog(props) {
                     currentblogs
                         .map((blog) => {
                             return (
-                                <Grid item lg={4}md={6} sm={6} xs={12}>
+                                <Grid item lg={4}md={6} sm={6} xs={12} key={blog._id}>
                                     <Card className="myblogcard">
                                         <CardMedia
                                             component="img"

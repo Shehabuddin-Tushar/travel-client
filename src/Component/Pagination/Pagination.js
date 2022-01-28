@@ -13,7 +13,7 @@ function Pagination({ totalpost, Postperpage, paginate }) {
             {
                 pagenumbers.map((number) => {
                     return (
-                        <li style={{ display: "inline" }}>
+                        <li style={{ display: "inline" }} key={number}>
                             <a className='pagination' onClick={() => paginate(number)} >{number}</a>
                         </li>
                     )
