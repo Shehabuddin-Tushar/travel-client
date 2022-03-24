@@ -6,6 +6,7 @@ import Navbar from '../../Shared/Header/Navbar'
 import { useParams } from 'react-router-dom'
 import StarIcon from '@mui/icons-material/Star';
 import axios from 'axios';
+import './Singlepage.css'
 
 function Singlepage() {
     const [blog, setBlog] = useState({});
@@ -20,22 +21,30 @@ function Singlepage() {
             <div className="blogsearch-image">
                 <Container style={{ top: "500px", display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "white", height: "150%", opacity: ".8" }}>
                     
-                    <Typography variant='h3'>{ blog.title}</Typography> 
+                    <Typography className="maintitle" variant='h2'>{ blog.title}</Typography> 
                 </Container>
             </div>
             <Grid container spacing={2}>
                 <Sidebar></Sidebar>
                 <Grid item xs={8} style={{ margin: "0px 10px" }}>
-                    <img src={blog.image} width="80%" style={{border:"10px solid gray",borderRadius:"20px",marginBottom:"10px"}}/>
-                    <Typography variant="h4">TITLE:{blog.title}</Typography>
-                    <Typography variant="h5">EXPENSE:{blog.expense} TK</Typography>
-                    <Typography variant="h5">TRAVELER INFO: { blog.traveler}</Typography>
-                    <Typography variant="h5">TRAVEL LOCATION: { blog.location}</Typography>
-                    <Typography variant="h5">
+                    <div>
+                        <ul class="img-list" style={{ width: "100%" }}>
+
+                            <li><img src={blog.image} width="100%" height="80%" style={{border:"2px solid gray"}} /></li>
+
+                        </ul>
+                    </div>
+                    
+                    
+                    <Typography style={{marginBottom:"20px"}} variant="h4" className="titleinblog">TITLE:{blog.title}</Typography>
+                    <Typography style={{ marginBottom: "20px" }} variant="h5" className="titleinblog">EXPENSE:{blog.expense} TK</Typography>
+                    <Typography style={{ marginBottom: "20px" }} variant="h5" className="titleinblog">TRAVELER INFO: { blog.traveler}</Typography>
+                    <Typography style={{ marginBottom: "20px" }} variant="h5" className="titleinblog">TRAVEL LOCATION: { blog.location}</Typography>
+                    <Typography style={{ marginBottom: "20px" }} variant="h5" className="titleinblog">
                         
                        Blog rating: {blog.ratings} rating
                     </Typography>
-                    <Typography>TRAVEL DESCRIPTION: { blog.description}</Typography>
+                    <Typography style={{ marginBottom: "20px",fontSize:"25px",fontWeight:"bold" }} className="titleinblog">TRAVEL DESCRIPTION: <span className="textDesign">{blog.description}</span></Typography>
                 </Grid>
 
 
