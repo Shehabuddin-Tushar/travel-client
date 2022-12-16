@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { Grid } from '@mui/material';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -20,56 +20,56 @@ import { Link } from 'react-router-dom';
 
 
 function Sidebar() {
-    let i=0
+    let i = 0
     const [selectedIndex, setSelectedIndex] = React.useState(1);
     const [allBlogs, setAllblogs] = useState([]);
-    
+
 
     useEffect(() => {
-        axios.get("https://morning-coast-07202.herokuapp.com/blogs").then((res) => setAllblogs(res.data)).catch(err => console.log(err))
+        axios.get("https://travel-server-five.vercel.app/blogs").then((res) => setAllblogs(res.data)).catch(err => console.log(err))
     }, [])
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);
     };
     return (
         <Grid item md={3} sm={12} xs={12}>
-            
+
             <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
                 {
                     allBlogs
                         .map((blog) => {
                             return (
                                 <>
-                                <ListItem alignItems="flex-start">
-                                    <ListItemAvatar>
+                                    <ListItem alignItems="flex-start">
+                                        <ListItemAvatar>
                                             <Link to={`/singlepage/${blog._id}`}><img src={blog.image} height="60px" width="100px" style={{ border: "1px solid red", borderRadius: "5px", marginRight: "5px" }} /></Link>
-                                    </ListItemAvatar>
-                                    <ListItemText
-                                        primary={blog.title}
-                                        secondary={
-                                            <React.Fragment>
-                                                <Typography
-                                                    sx={{ display: 'inline' }}
-                                                    component="span"
-                                                    variant="body2"
-                                                    color="text.primary"
-                                                >
-                                                   {blog.date}
-                                                </Typography>
-                                                
-                                            </React.Fragment>
-                                        }
-                                    />
-                                </ListItem>
-                                  <Divider variant="inset" component="li" />
+                                        </ListItemAvatar>
+                                        <ListItemText
+                                            primary={blog.title}
+                                            secondary={
+                                                <React.Fragment>
+                                                    <Typography
+                                                        sx={{ display: 'inline' }}
+                                                        component="span"
+                                                        variant="body2"
+                                                        color="text.primary"
+                                                    >
+                                                        {blog.date}
+                                                    </Typography>
+
+                                                </React.Fragment>
+                                            }
+                                        />
+                                    </ListItem>
+                                    <Divider variant="inset" component="li" />
                                 </>
                             )
                         })
                 }
-               
-             </List>
-         </Grid>
-               
+
+            </List>
+        </Grid>
+
     );
 }
 

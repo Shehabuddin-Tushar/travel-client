@@ -43,7 +43,7 @@ function Addblog() {
 
         };
 
-        axios.post(`https://morning-coast-07202.herokuapp.com/addexperience`, blogData)
+        axios.post(`https://travel-server-five.vercel.app/addexperience`, blogData)
             .then(res => {
                 console.log(res)
                 if (res.data.insertedId) {

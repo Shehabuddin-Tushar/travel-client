@@ -51,7 +51,7 @@ function Manageblogs() {
     const { register, handleSubmit, watch, formState: { errors }, reset } = useForm({
         defaultValues: {
             title: editBlog.title,
-            
+
         },
         shouldUnregister: true
     });
@@ -59,7 +59,7 @@ function Manageblogs() {
 
     useEffect(() => {
 
-        axios.get(`https://morning-coast-07202.herokuapp.com/allblogs`).then(res => setAllblogs(res.data)).catch(err => console.log(err))
+        axios.get(`https://travel-server-five.vercel.app/allblogs`).then(res => setAllblogs(res.data)).catch(err => console.log(err))
 
     }, [allblogs])
 
@@ -69,7 +69,7 @@ function Manageblogs() {
         const confirmchange = window.confirm("Are you sure you want to change status?");
         if (confirmchange) {
 
-            axios.put(`https://morning-coast-07202.herokuapp.com/changestatus/${id}`).then(res => {
+            axios.put(`https://travel-server-five.vercel.app/changestatus/${id}`).then(res => {
 
                 toast.success(res.data)
             }).catch(err => console.log(err))
@@ -80,7 +80,7 @@ function Manageblogs() {
         const confirmchange = window.confirm("Are you sure you want to delete this blog?");
         if (confirmchange) {
 
-            axios.delete(`https://morning-coast-07202.herokuapp.com/deleteblog/${id}`).then(res => {
+            axios.delete(`https://travel-server-five.vercel.app/deleteblog/${id}`).then(res => {
 
                 toast.success(res.data)
             }).catch(err => console.log(err))
@@ -88,7 +88,7 @@ function Manageblogs() {
     }
     const viewblog = (id) => {
         console.log(id)
-        axios.get(`https://morning-coast-07202.herokuapp.com/singleblog/${id}`).then((res) => setBlog(res.data)).catch(err => console.log(err))
+        axios.get(`https://travel-server-five.vercel.app/singleblog/${id}`).then((res) => setBlog(res.data)).catch(err => console.log(err))
         handleOpen()
     }
     const style = {
@@ -105,7 +105,7 @@ function Manageblogs() {
         height: '100%',
         display: 'block'
     };
-    
+
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -117,11 +117,11 @@ function Manageblogs() {
     const handleeditClose = () => setEditopen(false);
 
     const editblog = (id) => {
-        axios.get(`https://morning-coast-07202.herokuapp.com/singleblog/${id}`).then((res) => seteditBlog(res.data)).catch(err => console.log(err))
+        axios.get(`https://travel-server-five.vercel.app/singleblog/${id}`).then((res) => seteditBlog(res.data)).catch(err => console.log(err))
         handleeditOpen()
     }
 
-    const onSubmit = async (data) =>console.log(data)
+    const onSubmit = async (data) => console.log(data)
     return (
         <Box>
             <title>Manage orders</title>
@@ -135,7 +135,7 @@ function Manageblogs() {
                                     <StyledTableCell>title</StyledTableCell>
                                     <StyledTableCell align="right">Expense</StyledTableCell>
                                     <StyledTableCell align="right">location</StyledTableCell>
-                                    
+
                                     <StyledTableCell align="center">status</StyledTableCell>
                                     <StyledTableCell align="center">Action</StyledTableCell>
                                 </TableRow>
@@ -149,30 +149,30 @@ function Manageblogs() {
                                                 <StyledTableCell component="th" scope="row">{blog.title}</StyledTableCell>
                                                 <StyledTableCell align="right">{blog.expense} tk</StyledTableCell>
                                                 <StyledTableCell align="right">{blog.location}</StyledTableCell>
-                                                
+
                                                 <StyledTableCell align="center">
-                                                    
+
                                                     {
                                                         blog.status === "pending" ? <Button onClick={() => changestatus(blog._id)} variant="contained">{blog.status}</Button> : <Button disabled variant="contained">{blog.status}</Button>
                                                     }
-                                                        
-                                                    
+
+
                                                 </StyledTableCell>
                                                 <StyledTableCell align="center">
-                                                    
+
                                                     <IconButton onClick={() => viewblog(blog._id)} aria-label="view" style={{ color: "blue" }}>
                                                         <VisibilityIcon />
                                                     </IconButton>
                                                     &nbsp;
-                                                    <IconButton onClick={() => deleteblog(blog._id)} aria-label="delete" style={{color:"red"}}>
-                                                         <DeleteIcon />
+                                                    <IconButton onClick={() => deleteblog(blog._id)} aria-label="delete" style={{ color: "red" }}>
+                                                        <DeleteIcon />
                                                     </IconButton>
                                                     &nbsp;
-                                                    <IconButton  aria-label="edit" style={{ color: "green" }}>
+                                                    <IconButton aria-label="edit" style={{ color: "green" }}>
                                                         <Link to={`/dashboard/blog/${blog._id}`}><EditIcon /></Link>
                                                     </IconButton>
-                                                    
-                                                    
+
+
                                                 </StyledTableCell>
 
                                             </StyledTableRow>
@@ -199,34 +199,34 @@ function Manageblogs() {
                     <Box sx={style}>
                         <img src={blog.image} width="100%" />
                         <Typography id="modal-modal-title" variant="h6" component="h2">
-                           Title:{blog.title}
-                            </Typography>
+                            Title:{blog.title}
+                        </Typography>
                         <Typography id="modal-modal-title" variant="h6" component="h2">
-                               Expense:{blog.expense}tk
-                            </Typography>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                                Date:{blog.date}
-                            </Typography>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                                category:{blog.category}
-                            </Typography>
+                            Expense:{blog.expense}tk
+                        </Typography>
                         <Typography id="modal-modal-title" variant="h6" component="h2">
-                                Location:{blog.location}
+                            Date:{blog.date}
+                        </Typography>
+                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                            category:{blog.category}
+                        </Typography>
+                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                            Location:{blog.location}
                         </Typography>
                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                           {blog.description}
+                            {blog.description}
                         </Typography>
                     </Box>
                 </Modal>
             }
 
 
-             
-                                   
-                               
-                                
-                 
-            
+
+
+
+
+
+
         </Box>
     )
 }

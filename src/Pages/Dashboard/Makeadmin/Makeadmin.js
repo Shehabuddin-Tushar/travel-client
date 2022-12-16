@@ -14,7 +14,7 @@ function Makeadmin() {
         const confirmchange = window.confirm("Are you sure you want Make admin this email");
         if (confirmchange) {
 
-            axios.put(`https://morning-coast-07202.herokuapp.com/makeadmin/${data.email}`).then(res => {
+            axios.put(`https://travel-server-five.vercel.app/makeadmin/${data.email}`).then(res => {
                 if (res.data === false) {
                     toast.error("This email is not valid")
                 } else {
@@ -39,7 +39,7 @@ function Makeadmin() {
                         <Typography variant="h4" style={{ textAlign: "center", marginBottom: "30px" }}>Make admin</Typography>
 
 
-                        <TextField type="email"   {...register("email", { required: true })} id="standard-basic" style={{width:"100%"}} label="Enter Email" variant="standard" />
+                        <TextField type="email"   {...register("email", { required: true })} id="standard-basic" style={{ width: "100%" }} label="Enter Email" variant="standard" />
                         <Typography sx={{ color: "red" }}>{errors.email && <span>email is required</span>}</Typography>
 
 

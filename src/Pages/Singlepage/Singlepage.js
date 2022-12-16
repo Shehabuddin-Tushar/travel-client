@@ -1,5 +1,5 @@
 import { Container, Grid, Typography } from '@mui/material';
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../../Component/Sidebar/Sidebar';
 import Footer from '../../Shared/Footer/Footer';
 import Navbar from '../../Shared/Header/Navbar'
@@ -10,18 +10,18 @@ import './Singlepage.css'
 
 function Singlepage() {
     const [blog, setBlog] = useState({});
-    const {id }= useParams();
+    const { id } = useParams();
     console.log(id)
     useEffect(() => {
-        axios.get(`https://morning-coast-07202.herokuapp.com/singleblog/${id}`).then((res) =>setBlog(res.data)).catch(err => console.log(err))
+        axios.get(`https://travel-server-five.vercel.app/singleblog/${id}`).then((res) => setBlog(res.data)).catch(err => console.log(err))
     }, [id])
     return (
         <div>
             <Navbar></Navbar>
             <div className="blogsearch-image">
                 <Container style={{ top: "500px", display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "white", height: "150%", opacity: ".8" }}>
-                    
-                    <Typography className="maintitle" variant='h2'>{ blog.title}</Typography> 
+
+                    <Typography className="maintitle" variant='h2'>{blog.title}</Typography>
                 </Container>
             </div>
             <Grid container spacing={2}>
@@ -30,27 +30,27 @@ function Singlepage() {
                     <div>
                         <ul class="img-list" style={{ width: "100%" }}>
 
-                            <li><img src={blog.image} width="100%" height="80%" style={{border:"2px solid gray"}} /></li>
+                            <li><img src={blog.image} width="100%" height="80%" style={{ border: "2px solid gray" }} /></li>
 
                         </ul>
                     </div>
-                    
-                    
-                    <Typography style={{marginBottom:"20px"}} variant="h4" className="titleinblog">TITLE:{blog.title}</Typography>
+
+
+                    <Typography style={{ marginBottom: "20px" }} variant="h4" className="titleinblog">TITLE:{blog.title}</Typography>
                     <Typography style={{ marginBottom: "20px" }} variant="h5" className="titleinblog">EXPENSE:{blog.expense} TK</Typography>
-                    <Typography style={{ marginBottom: "20px" }} variant="h5" className="titleinblog">TRAVELER INFO: { blog.traveler}</Typography>
-                    <Typography style={{ marginBottom: "20px" }} variant="h5" className="titleinblog">TRAVEL LOCATION: { blog.location}</Typography>
+                    <Typography style={{ marginBottom: "20px" }} variant="h5" className="titleinblog">TRAVELER INFO: {blog.traveler}</Typography>
+                    <Typography style={{ marginBottom: "20px" }} variant="h5" className="titleinblog">TRAVEL LOCATION: {blog.location}</Typography>
                     <Typography style={{ marginBottom: "20px" }} variant="h5" className="titleinblog">
-                        
-                       Blog rating: {blog.ratings} rating
+
+                        Blog rating: {blog.ratings} rating
                     </Typography>
-                    <Typography style={{ marginBottom: "20px",fontSize:"25px",fontWeight:"bold" }} className="titleinblog">TRAVEL DESCRIPTION: <span className="textDesign">{blog.description}</span></Typography>
+                    <Typography style={{ marginBottom: "20px", fontSize: "25px", fontWeight: "bold" }} className="titleinblog">TRAVEL DESCRIPTION: <span className="textDesign">{blog.description}</span></Typography>
                 </Grid>
 
 
             </Grid>
             <Footer></Footer>
-            
+
         </div>
     );
 }

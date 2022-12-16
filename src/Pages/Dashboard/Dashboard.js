@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -44,20 +44,20 @@ function Dashboard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
-        const {Logout,user}=useAuth();
-        const[myrole,setMyrole]=useState();
- 
-       const [databaseuser,setDatabaseuser]=useState({});
-       const useremail=user.email;
-        useEffect(()=>{
-            fetch(`https://morning-coast-07202.herokuapp.com/userfind/${user.email}`).then(res=>res.json()).then(data=>{
-                setDatabaseuser(data);
-                console.log(data)
-            setMyrole(data.role==="admin"?true:false)
-          
-          })
-        }, [useremail, myrole])
-    
+    const { Logout, user } = useAuth();
+    const [myrole, setMyrole] = useState();
+
+    const [databaseuser, setDatabaseuser] = useState({});
+    const useremail = user.email;
+    useEffect(() => {
+        fetch(`https://travel-server-five.vercel.app/userfind/${user.email}`).then(res => res.json()).then(data => {
+            setDatabaseuser(data);
+            console.log(data)
+            setMyrole(data.role === "admin" ? true : false)
+
+        })
+    }, [useremail, myrole])
+
     const history = useHistory();
     const gotologin = () => {
         history.push("/login")
@@ -79,7 +79,7 @@ function Dashboard(props) {
             <Toolbar />
             <Divider />
             <List>
-               
+
                 <MenuItem>
                     <ListItemIcon>
                         <AdminPanelSettingsIcon />
@@ -117,11 +117,11 @@ function Dashboard(props) {
 
                     {user.email ? <Button onClick={logout} style={{ color: "#000", marginTop: "0px", padding: "10px 15px", textDecoration: "none" }}>Logout</Button> : <Button onClick={gotologin} style={{ color: "#000", marginTop: "0px", padding: "10px 15px", textDecoration: "none" }}>LogIn</Button>}
                 </MenuItem>
-                
-              
+
+
             </List>
             <Divider />
-            
+
         </div>
     );
 
@@ -189,25 +189,25 @@ function Dashboard(props) {
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
-                
+
                 <Switch>
                     <Route exact path={path}>
-                        <img src="https://i.postimg.cc/bJm4BzNq/travelhome2.jpg" width="100%" height="600px"/>
+                        <img src="https://i.postimg.cc/bJm4BzNq/travelhome2.jpg" width="100%" height="600px" />
                     </Route>
                     <Route path={`${path}/manageblogs`}>
                         <Manageblogs></Manageblogs>
                     </Route>
                     <Route path={`${path}/addblogs`}>
-                         <Addblog></Addblog>
+                        <Addblog></Addblog>
                     </Route>
                     <Route path={`${path}/makeadmin`}>
-                       <Makeadmin></Makeadmin>
+                        <Makeadmin></Makeadmin>
                     </Route>
-                   
+
                     <Route path={`${path}/blog/:id`}>
-                       <Editblog></Editblog>
+                        <Editblog></Editblog>
                     </Route>
- 
+
                 </Switch>
             </Box>
         </Box>

@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -23,7 +23,7 @@ const ResponsiveAppBar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [myrole, setMyrole] = useState();
   const [databaseuser, setDatabaseuser] = useState({});
-   
+
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -41,16 +41,16 @@ const ResponsiveAppBar = () => {
 
   const useremail = user.email;
   useEffect(() => {
-    fetch(`https://morning-coast-07202.herokuapp.com/userfind/${user.email}`).then(res => res.json()).then(data => {
+    fetch(`https://travel-server-five.vercel.app/userfind/${user.email}`).then(res => res.json()).then(data => {
       setDatabaseuser(data);
-      
+
       setMyrole(data.role === "admin" ? true : false)
 
     })
   }, [useremail, myrole])
 
   return (
-    <AppBar position="fixed" style={{ backgroundColor:"#2a72d8"}}>
+    <AppBar position="fixed" style={{ backgroundColor: "#2a72d8" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -59,10 +59,10 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-             
-                <img src="https://i.postimg.cc/XNGYBNwp/logo.png" style={{ height: "70px", width: "70px" }} />
-          
-            
+
+            <img src="https://i.postimg.cc/XNGYBNwp/logo.png" style={{ height: "70px", width: "70px" }} />
+
+
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -95,10 +95,10 @@ const ResponsiveAppBar = () => {
               }}
               className="mainmenumobile"
             >
-            
+
               <MenuItem onClick={handleCloseNavMenu}>
                 <NavLink exact to="/" activeStyle={{ textDecoration: "none", color: "#000", fontWeight: "bold", padding: "5px 0px" }}>Home</NavLink>
-                  
+
               </MenuItem>
 
               <MenuItem onClick={handleCloseNavMenu}>
@@ -107,8 +107,8 @@ const ResponsiveAppBar = () => {
               </MenuItem>
               {
                 !user.email &&
-               <>
-                  
+                <>
+
                   <MenuItem onClick={handleCloseNavMenu}>
                     <NavLink to="/login" activeStyle={{ textDecoration: "none", color: "#000", fontWeight: "bold", padding: "5px 0px" }}>Login</NavLink>
                   </MenuItem>
@@ -117,9 +117,9 @@ const ResponsiveAppBar = () => {
               {
                 user.email &&
                 <>
-                <MenuItem onClick={handleCloseNavMenu}>
+                  <MenuItem onClick={handleCloseNavMenu}>
                     <NavLink to="/addexperience" activeStyle={{ textDecoration: "none", color: "#000", fontWeight: "bold", padding: "5px 0px" }}>Add your experience</NavLink>
-                
+
                   </MenuItem>
                   <MenuItem onClick={handleCloseNavMenu} >
                     <Button onClick={Logout} style={{ textDecoration: "none", color: "gray", fontWeight: "bold", padding: "0px 0px" }}>Logout</Button>
@@ -134,7 +134,7 @@ const ResponsiveAppBar = () => {
                     <NavLink to="/dashboard" activeStyle={{ textDecoration: "none", color: "#000", fontWeight: "bold", padding: "5px 0px" }}>dashboard</NavLink>
 
                   </MenuItem>
-                  
+
                 </>
               }
             </Menu>
@@ -148,12 +148,12 @@ const ResponsiveAppBar = () => {
             Travel-destination
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} className="mainmenu">
-            
-              <Button
-               
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
+
+            <Button
+
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
               <NavLink exact to="/" activeStyle={{ textDecoration: "none", color: "#000", fontWeight: "bold", padding: "5px 0px" }}>Home</NavLink>
             </Button>
 
@@ -162,7 +162,7 @@ const ResponsiveAppBar = () => {
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
-              <NavLink  to="/blog" activeStyle={{ textDecoration: "none", color: "#000", fontWeight: "bold", padding: "5px 0px" }}>Blog</NavLink>
+              <NavLink to="/blog" activeStyle={{ textDecoration: "none", color: "#000", fontWeight: "bold", padding: "5px 0px" }}>Blog</NavLink>
             </Button>
             {
               user.email &&
@@ -174,17 +174,17 @@ const ResponsiveAppBar = () => {
                 <NavLink to="/addexperience" activeStyle={{ textDecoration: "none", color: "#000", fontWeight: "bold", padding: "5px 0px" }}>Add your experience</NavLink>
               </Button>
             }
-            {!user.email && 
+            {!user.email &&
               <>
-            <Button
-               onClick={handleCloseNavMenu}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              <NavLink to="/login" activeStyle={{ textDecoration: "none", color: "#000", fontWeight: "bold", padding: "5px 0px" }}>Login</NavLink>
-            </Button>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  <NavLink to="/login" activeStyle={{ textDecoration: "none", color: "#000", fontWeight: "bold", padding: "5px 0px" }}>Login</NavLink>
+                </Button>
 
-            
-            </>
+
+              </>
             }
             {user.email && myrole &&
               <>
@@ -198,7 +198,7 @@ const ResponsiveAppBar = () => {
 
               </>
             }
-            
+
             {user.email &&
               <Button
 
@@ -215,10 +215,10 @@ const ResponsiveAppBar = () => {
             <Tooltip title="Click here">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 {
-                  user.photoURL ?  <Avatar alt="Remy Sharp" src={user.photoURL} /> :
+                  user.photoURL ? <Avatar alt="Remy Sharp" src={user.photoURL} /> :
                     <Avatar alt={user.displayName} src="/static/images/avatar/2.jpg" />
                 }
-               
+
               </IconButton>
             </Tooltip>
             <Menu
@@ -236,14 +236,14 @@ const ResponsiveAppBar = () => {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
-             
+
             >
               <MenuItem onClick={handleCloseUserMenu}>
                 {
                   user.displayName ? <Typography textAlign="center"><p style={{ fontSize: "10px" }}>{user.displayName}</p></Typography> :
                     <Link to="/login" textAlign="center"><p style={{ fontSize: "10px" }}>first login</p></Link>
                 }
-                
+
               </MenuItem>
             </Menu>
           </Box>
