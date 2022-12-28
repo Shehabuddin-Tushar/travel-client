@@ -41,7 +41,7 @@ const ResponsiveAppBar = () => {
 
   const useremail = user.email;
   useEffect(() => {
-    fetch(`https://travel-server-five.vercel.app/userfind/${user.email}`).then(res => res.json()).then(data => {
+    fetch(`https://travel-server-ckcf.onrender.com/userfind/${user.email}`).then(res => res.json()).then(data => {
       setDatabaseuser(data);
 
       setMyrole(data.role === "admin" ? true : false)

@@ -26,7 +26,7 @@ function Sidebar() {
 
 
     useEffect(() => {
-        axios.get("https://travel-server-five.vercel.app/blogs").then((res) => setAllblogs(res.data)).catch(err => console.log(err))
+        axios.get("https://travel-server-ckcf.onrender.com/blogs").then((res) => setAllblogs(res.data)).catch(err => console.log(err))
     }, [])
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);

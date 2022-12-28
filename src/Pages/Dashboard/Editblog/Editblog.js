@@ -14,7 +14,7 @@ function Editblog() {
     const [editBlog, seteditBlog] = useState({});
 
     useEffect(async () => {
-        let result = await axios.get(`https://travel-server-five.vercel.app/singleblog/${id}`);
+        let result = await axios.get(`https://travel-server-ckcf.onrender.com/singleblog/${id}`);
         let finalresult = await result.data;
         seteditBlog(finalresult);
 
@@ -59,7 +59,7 @@ function Editblog() {
         };
 
 
-        axios.put(`https://travel-server-five.vercel.app/updateblog/${id}`, blogData)
+        axios.put(`https://travel-server-ckcf.onrender.com/updateblog/${id}`, blogData)
             .then(res => {
                 if (res.data === false) {
                     toast.error("Please again write all the field minimum one letter if you edit this blog")

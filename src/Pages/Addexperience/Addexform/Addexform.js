@@ -43,7 +43,7 @@ function Addexform() {
 
         };
 
-        axios.post(`https://travel-server-five.vercel.app/addexperience`, blogData)
+        axios.post(`https://travel-server-ckcf.onrender.com/addexperience`, blogData)
             .then(res => {
                 console.log(res)
                 if (res.data.insertedId) {

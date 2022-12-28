@@ -59,7 +59,7 @@ function Manageblogs() {
 
     useEffect(() => {
 
-        axios.get(`https://travel-server-five.vercel.app/allblogs`).then(res => setAllblogs(res.data)).catch(err => console.log(err))
+        axios.get(`https://travel-server-ckcf.onrender.com/allblogs`).then(res => setAllblogs(res.data)).catch(err => console.log(err))
 
     }, [allblogs])
 
@@ -69,7 +69,7 @@ function Manageblogs() {
         const confirmchange = window.confirm("Are you sure you want to change status?");
         if (confirmchange) {
 
-            axios.put(`https://travel-server-five.vercel.app/changestatus/${id}`).then(res => {
+            axios.put(`https://travel-server-ckcf.onrender.com/changestatus/${id}`).then(res => {
 
                 toast.success(res.data)
             }).catch(err => console.log(err))
@@ -80,7 +80,7 @@ function Manageblogs() {
         const confirmchange = window.confirm("Are you sure you want to delete this blog?");
         if (confirmchange) {
 
-            axios.delete(`https://travel-server-five.vercel.app/deleteblog/${id}`).then(res => {
+            axios.delete(`https://travel-server-ckcf.onrender.com/deleteblog/${id}`).then(res => {
 
                 toast.success(res.data)
             }).catch(err => console.log(err))
@@ -88,7 +88,7 @@ function Manageblogs() {
     }
     const viewblog = (id) => {
         console.log(id)
-        axios.get(`https://travel-server-five.vercel.app/singleblog/${id}`).then((res) => setBlog(res.data)).catch(err => console.log(err))
+        axios.get(`https://travel-server-ckcf.onrender.com/singleblog/${id}`).then((res) => setBlog(res.data)).catch(err => console.log(err))
         handleOpen()
     }
     const style = {
@@ -117,7 +117,7 @@ function Manageblogs() {
     const handleeditClose = () => setEditopen(false);
 
     const editblog = (id) => {
-        axios.get(`https://travel-server-five.vercel.app/singleblog/${id}`).then((res) => seteditBlog(res.data)).catch(err => console.log(err))
+        axios.get(`https://travel-server-ckcf.onrender.com/singleblog/${id}`).then((res) => seteditBlog(res.data)).catch(err => console.log(err))
         handleeditOpen()
     }
 

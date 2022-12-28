@@ -13,7 +13,7 @@ function Singlepage() {
     const { id } = useParams();
     console.log(id)
     useEffect(() => {
-        axios.get(`https://travel-server-five.vercel.app/singleblog/${id}`).then((res) => setBlog(res.data)).catch(err => console.log(err))
+        axios.get(`https://travel-server-ckcf.onrender.com/singleblog/${id}`).then((res) => setBlog(res.data)).catch(err => console.log(err))
     }, [id])
     return (
         <div>
